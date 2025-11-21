@@ -108,7 +108,7 @@ async function loadStudentData(user) {
 
     // 2. LİSTE İÇİN: Verileri "Yeniden Eskiye" (Ters) yazdırıyoruz ters yazdırma sebebimiz en sonuncunun en üstte olması
     [...tempSubmissions].reverse().forEach(data => {
-        let details = data.details ? `<div style="font-size:0.8em; color:#666;">🧹Kod:${data.details.cleanCode} 🧠Algo:${data.details.algorithm} ⚡Perf:${data.details.performance}</div>` : "";
+        let details = data.details ? `<div style="font-size:0.8em; color:#666;">🧹 clean kod:${data.details.cleanCode} 🧠Algoritma:${data.details.algorithm} ⚡Performans:${data.details.performance}🕙️geliştirme:${data.details.extensibility}</div>` : "";
         let status = data.status === "graded" ? `<b style="color:green">${data.totalScore} Puan</b>` : `<span style="color:orange">Bekliyor</span>`;
 
         listDiv.innerHTML += `<div class="card" style="padding:10px;">
@@ -178,6 +178,7 @@ window.toggleComparison = async () => {
         drawChart(allDatasets);
 
     } catch (error) {
+        //firebase indexleri göndermiyor onay vermek gerekebiliyordu onun için kontrol
         console.error("HATA:", error);
         if (error.message.includes("index")) {
             alert("Lütfen konsolu açıp (F12) Firebase index linkine tıklayın.");
