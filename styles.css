@@ -1,0 +1,120 @@
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* ana conteiner içinde margini 0 yapıp kart şeklinde yuvarlak köşeler için border radiıus gölge veriyoruz ve elementler arası padding veriyoruz*/
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* h1 h2 h3 e de center verip rengini ayarlıyoruz*/
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        /*button ve input text boxu için yumuşak köşeler için border-radiıus  ikisinde de border ile çerçeve */
+        input,
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        /* background kırmızı değil turunuc 4 özelliğin birleşimi olarak background yazdık o yüzden cursor fare imleci değişikliği */
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+            transform: rotateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button.logout {
+            background: #e74c3c;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Kart Tasarımı */
+        .card {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Grafik Alanı */
+        #chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        /* ---> İŞTE BURASI: Kutucuk (Checkbox) Stili <--- */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            /* Sağa yasla */
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: #555;
+            background-color: #f9f9f9;
+            padding: 5px 10px;
+            border-radius: 20px;
+            width: fit-content;
+            margin-left: auto;
+            /* Sağa yaslamak için */
+        }
+
+        .toggle-container input {
+            width: auto;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .toggle-container label {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }

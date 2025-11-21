@@ -24,14 +24,18 @@ let currentUserId = "";
 let currentUserName = "";
 
 // --- GİRİŞ / ÇIKIŞ ---
+// giriş veya kayıt ol ekranında işlem bittikten sonra o divlerin saklanması için
 window.toggleForms = () => {
+
     document.getElementById('login-form').classList.toggle('hidden');
     document.getElementById('register-form').classList.toggle('hidden');
 }
 window.login = async () => {
+    //email ile password id li elementlerden gelen veri ile deniyor
     try { await signInWithEmailAndPassword(auth, document.getElementById('email').value, document.getElementById('password').value); }
     catch (e) { alert("Hata: " + e.message); }
 }
+//register fonksiyonu
 window.register = async () => {
     const pass = document.getElementById('reg-password').value;
     if (pass.length < 6) return alert("Şifre kısa");
@@ -42,17 +46,19 @@ window.register = async () => {
         });
         alert("Kayıt başarılı!");
     } catch (e) { alert("Hata: " + e.message); }
-}
+}//çıkış butonuna basılınca çalışacak fonksiyon
 window.logout = () => { signOut(auth); location.reload(); }
 
-// --- AUTH DİNLEME ---
+// --- AUTH DİNLEME (ana akış şeması)---
 onAuthStateChanged(auth, async (user) => {
+    //eğer kullanıcı varsa giriş ekranını klasına sahip olanları gizliyor leaderboard clasında kileri de hiddendan çıkarıyor
     if (user) {
         currentUserId = user.uid;
         document.getElementById('login-section').classList.add('hidden');
         document.getElementById('leaderboard-section').classList.remove('hidden');
+        //liderlik tablosunu yükleme fonksiyonunu çağrıyor
         loadLeaderboard();
-
+        //admin mailiyse daykul75@gmail.com yani farklı elementleri yüklüyor
         if (user.email === ADMIN_EMAIL) {
             document.getElementById('admin-section').classList.remove('hidden');
             loadPendingSubmissions();
@@ -60,7 +66,9 @@ onAuthStateChanged(auth, async (user) => {
             document.getElementById('student-section').classList.remove('hidden');
             loadStudentData(user);
         }
-    } else {
+    }
+    //kullanıcı yoksa direkt basemodda açıyor sayfayı
+    else {
         document.getElementById('login-section').classList.remove('hidden');
         document.getElementById('student-section').classList.add('hidden');
         document.getElementById('admin-section').classList.add('hidden');
@@ -91,8 +99,6 @@ async function loadStudentData(user) {
     const tempSubmissions = [];
     subSnap.forEach(doc => tempSubmissions.push(doc.data()));
 
-    // --- DÜZELTME BURADA ---
-
     // 1. GRAFİK İÇİN: Verileri "Eskiden Yeniye" (Orijinal sıra) kaydediyoruz
     tempSubmissions.forEach(data => {
         if (data.status === "graded") {
@@ -100,7 +106,7 @@ async function loadStudentData(user) {
         }
     });
 
-    // 2. LİSTE İÇİN: Verileri "Yeniden Eskiye" (Ters) yazdırıyoruz
+    // 2. LİSTE İÇİN: Verileri "Yeniden Eskiye" (Ters) yazdırıyoruz ters yazdırma sebebimiz en sonuncunun en üstte olması
     [...tempSubmissions].reverse().forEach(data => {
         let details = data.details ? `<div style="font-size:0.8em; color:#666;">🧹Kod:${data.details.cleanCode} 🧠Algo:${data.details.algorithm} ⚡Perf:${data.details.performance}</div>` : "";
         let status = data.status === "graded" ? `<b style="color:green">${data.totalScore} Puan</b>` : `<span style="color:orange">Bekliyor</span>`;

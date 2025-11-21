@@ -5,129 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kod Takip Sistemi</title>
+
     <!-- Grafik Kütüphanesi -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        h1,
-        h2,
-        h3 {
-            text-align: center;
-            color: #2c3e50;
-        }
-
-        input,
-        button {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
-
-        button {
-            background: #3498db;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #2980b9;
-        }
-
-        button.logout {
-            background: #e74c3c;
-            margin-top: 20px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Kart Tasarımı */
-        .card {
-            border: 1px solid #eee;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Grafik Alanı */
-        #chart-container {
-            position: relative;
-            height: 350px;
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        /* ---> İŞTE BURASI: Kutucuk (Checkbox) Stili <--- */
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            /* Sağa yasla */
-            margin-bottom: 10px;
-            font-size: 0.9em;
-            color: #555;
-            background-color: #f9f9f9;
-            padding: 5px 10px;
-            border-radius: 20px;
-            width: fit-content;
-            margin-left: auto;
-            /* Sağa yaslamak için */
-        }
-
-        .toggle-container input {
-            width: auto;
-            margin-right: 8px;
-            cursor: pointer;
-        }
-
-        .toggle-container label {
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .score-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
     <div class="container">
-        <h1>🚀 Kod Gelişim Takibi</h1>
+        <h1> Kod Gelişim Takibi</h1>
 
         <!-- GİRİŞ / KAYIT -->
         <div id="login-section">
@@ -139,7 +26,7 @@
                 <p style="text-align:center;">Hesabın yok mu? <a href="#" onclick="toggleForms()">Kayıt Ol</a></p>
             </div>
             <div id="register-form" class="hidden">
-                <h2>Kayıt Ol 📝</h2>
+                <h2>Kayıt Ol </h2>
                 <input type="text" id="reg-name" placeholder="Adın Soyadın">
                 <input type="email" id="reg-email" placeholder="E-posta">
                 <input type="password" id="reg-password" placeholder="Şifre (En az 6 haneli)">
@@ -151,7 +38,7 @@
 
         <!-- ÖĞRENCİ PANELİ -->
         <div id="student-section" class="hidden">
-            <h2>Merhaba, <span id="student-name"></span> 👋</h2>
+            <h2>Merhaba, <span id="student-name"></span> </h2>
             <div style="text-align:center; margin-bottom:20px;">
                 Toplam Puan: <strong id="student-total-score" style="font-size:2em; color:#27ae60;">0</strong>
             </div>
@@ -164,7 +51,7 @@
                     <label for="compareToggle">👥 Sınıfı Göster</label>
                 </div>
 
-                <h3>📈 Performans Grafiği</h3>
+                <h3> Performans Grafiği</h3>
                 <div id="chart-container">
                     <canvas id="scoreChart"></canvas>
                 </div>
@@ -180,7 +67,7 @@
 
         <!-- HOCA PANELİ -->
         <div id="admin-section" class="hidden">
-            <h2>Hoca Paneli 🎓</h2>
+            <h2>Hoca Paneli </h2>
             <h3>Bekleyen Gönderimler</h3>
             <div id="pending-submissions">Yükleniyor...</div>
         </div>
@@ -188,7 +75,7 @@
         <!-- LİDERLİK TABLOSU -->
         <div id="leaderboard-section" class="hidden">
             <hr>
-            <h2>🏆 Liderlik Tablosu</h2>
+            <h2> Liderlik Tablosu</h2>
             <table id="leaderboard-table">
                 <thead>
                     <tr>
